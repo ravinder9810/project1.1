@@ -1,6 +1,5 @@
  package com.demo.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -9,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.entities.User;
+import com.demo.exception.ConfirmPassswordException;
 import com.demo.exception.InvalidEmailAndPassword;
 import com.demo.exception.UserDoesNotExist;
 import com.demo.exception.UserEmailAlreadyExistException;
@@ -26,7 +26,7 @@ public  class UserServiceImpl implements IUserService{
 //	private BCryptPasswordEncoder passwordEncoder
 	
 	@Override
-	public User save( User user ) throws UserEmailAlreadyExistException, UserNameException 
+	public User save( User user ) throws UserEmailAlreadyExistException, UserNameException, ConfirmPassswordException 
 	{
 	
 	//	user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -34,13 +34,18 @@ public  class UserServiceImpl implements IUserService{
 	{
 		throw new UserEmailAlreadyExistException();
 	}
-	if(checkIfUserNameExist(user.getUserName())) {
+	if(checkIfUserNameExist(user.getUserName())) 
+	{
 		throw new UserNameException();
 		
 	}
+	if(!(user.getPassword().equals(user.getConfirmPassword())))
+	{
+	//	user.getPassword().equals(user.getConfirmPassword())
+		throw new ConfirmPassswordException();
+	}
 	
-//	BCryptPasswordEncoder enc = new BCryptPasswordEncoder();
-//	user.setPassword(enc.encode(user.getPassword()));
+
 	user.setRoll("Trainee");
 		
 		return	userRepository.save(user);

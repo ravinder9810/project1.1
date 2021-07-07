@@ -68,6 +68,8 @@ public class User {
 //	@Size(min = 8 ,message = " password should have minimum 8 characters ")
 	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$" ,message = "password should contain minimun 8 characters :")
 	private String password;
+	
+	private String confirmPassword;
 		
 
 	@Column(name = "roll")

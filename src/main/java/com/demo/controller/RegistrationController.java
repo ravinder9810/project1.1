@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.entities.Login;
 import com.demo.entities.User;
+import com.demo.exception.ConfirmPassswordException;
 import com.demo.exception.InvalidEmailAndPassword;
 import com.demo.exception.UserDoesNotExist;
 import com.demo.exception.UserEmailAlreadyExistException;
@@ -40,7 +41,7 @@ public class RegistrationController {
 //	private BCryptPasswordEncoder bCryptPasswordEncoder;
 		
 	@PostMapping("registration")
-	public ResponseEntity<User> registerUserAccount(@Valid @RequestBody User user) throws UserEmailAlreadyExistException, UserNameException
+	public ResponseEntity<User> registerUserAccount(@Valid @RequestBody User user) throws UserEmailAlreadyExistException, UserNameException, ConfirmPassswordException
 	{
 //		bCryptPasswordEncoder.encode(user.getPassword());
 				

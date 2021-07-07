@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.demo.exception.ConfirmPassswordException;
 import com.demo.exception.InvalidEmailAndPassword;
 import com.demo.exception.UserDoesNotExist;
 import com.demo.exception.UserEmailAlreadyExistException;
@@ -49,6 +50,12 @@ public class ValidationMessages extends ResponseEntityExceptionHandler{
 	public ResponseEntity<Object> exception4(InvalidEmailAndPassword exception) {
 
 		return new ResponseEntity<>(" Invalid mail-Id and password ", HttpStatus.NOT_FOUND);
+
+	}
+	@ExceptionHandler(value = ConfirmPassswordException.class)
+	public ResponseEntity<Object> exception4(ConfirmPassswordException exception) {
+
+		return new ResponseEntity<>(" Password and confirm Password Does not Match ", HttpStatus.NOT_FOUND);
 
 	}
 	
