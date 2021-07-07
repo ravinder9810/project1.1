@@ -49,11 +49,7 @@ public class RegistrationController {
 		return new ResponseEntity<User>(user1,HttpStatus.CREATED);
 	}	
 	
-	@GetMapping("/admin/findAll")
-	public List<User> findAll() {
-		
-		return userService.findAll();
-	}
+
 	
 	@PostMapping("login")
 	public ResponseEntity<Login>  login(@RequestBody  Login login,HttpSession session) throws InvalidEmailAndPassword
@@ -66,6 +62,9 @@ public class RegistrationController {
 		{
 			throw new InvalidEmailAndPassword();
 		}
+		
+		
+		
 		return new ResponseEntity<>(login, HttpStatus.CREATED);
 	}
 	

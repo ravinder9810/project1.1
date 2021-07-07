@@ -23,20 +23,20 @@ import com.demo.exception.UserNameException;
 public class ValidationMessages extends ResponseEntityExceptionHandler{
 	
 	
-//	@ExceptionHandler(value = UserEmailAlreadyExistException.class)
-//	public ResponseEntity<Object> exception3(UserEmailAlreadyExistException exception) {
-//
-//		return new ResponseEntity<>(" User already exist with the mail Id !! ", HttpStatus.NOT_FOUND);
-//
-//	}
-//	
-//	
-//	@ExceptionHandler(value = UserNameException.class)
-//	public ResponseEntity<Object> exception3(UserNameException exception) {
-//
-//		return new ResponseEntity<>(" User already exist with the userNAme Id !! ", HttpStatus.NOT_FOUND);
-//
-//	}
+	@ExceptionHandler(value = UserEmailAlreadyExistException.class)
+	public ResponseEntity<Object> exception3(UserEmailAlreadyExistException exception) {
+
+		return new ResponseEntity<>(" User already exist with the mail Id !! ", HttpStatus.NOT_FOUND);
+
+	}
+	
+	
+	@ExceptionHandler(value = UserNameException.class)
+	public ResponseEntity<Object> exception3(UserNameException exception) {
+
+		return new ResponseEntity<>(" User already exist with the userNAme  !! ", HttpStatus.NOT_FOUND);
+
+	}
 	
 	@ExceptionHandler(value = UserDoesNotExist.class)
 	public ResponseEntity<Object> exception4(UserDoesNotExist exception) {

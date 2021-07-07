@@ -24,8 +24,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "regis_table")
 
-//@Table(name = "regis_table", uniqueConstraints = { @ UniqueConstraint(columnNames = "email"), @UniqueConstraint(columnNames = "userName")})	
-//@Table(name = "regis_table", uniqueConstraints =  @ UniqueConstraint(columnNames = {"userName","email"})	)	
 
 public class User {
 	@Id
@@ -59,7 +57,7 @@ public class User {
 	private String address;
 	
 	@Pattern(regexp = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$",message = "emial should not matched pattern !!")
-	private String email;
+	private String emailId;
 	
 	/*
 	@Pattern(regexp  = "[[0-9]&&[6-9]]"+"[0-9]+")

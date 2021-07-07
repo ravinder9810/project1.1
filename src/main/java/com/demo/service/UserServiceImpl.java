@@ -30,11 +30,11 @@ public  class UserServiceImpl implements IUserService{
 	{
 	
 	//	user.setPassword(passwordEncoder.encode(user.getPassword()));
-	if(!checkIfEmailExist(user.getEmail()))
+	if(checkIfEmailExist(user.getEmailId()))
 	{
 		throw new UserEmailAlreadyExistException();
 	}
-	if(!checkIfUserNameExist(user.getUserName())) {
+	if(checkIfUserNameExist(user.getUserName())) {
 		throw new UserNameException();
 		
 	}
@@ -48,7 +48,7 @@ public  class UserServiceImpl implements IUserService{
 	
 	//check with mail
 	public boolean checkIfEmailExist(String email) {// this is for registration 
-		return userRepository.findByEmail(email) != null ? true : false;
+		return userRepository.findByEmailId(email) != null ? true : false;
 	}
 
 	// check with username
@@ -57,38 +57,15 @@ public  class UserServiceImpl implements IUserService{
 	}
 	
 
-	@Override
-	public List<User> fetchAll() // get all users details
-	{
-		List<User> user = userRepository.findAll();			
-		return user;	
-		
-	}
-
-	@Override
-	public User findByUserName(String userName) throws UserDoesNotExist {
-		User user = userRepository.findByUserName(userName);
-		
-		
-		User user1 = new User();
-		 
-		user1.setUserName(user.getUserName());
-		user1.setRoll(user.getRoll());
-		user1.setEmail(user.getEmail());
-		
-		return user1;
-			
-	}
-	
-
+	//for Login
 	@Override
 	public boolean findByEmailAndPassword(String email, String password) throws InvalidEmailAndPassword {
-		Optional<User> user =userRepository.findByEmailAndPassword(email, password);
+		Optional<User> user =userRepository.findByEmailIdAndPassword(email, password);
 		if(!user.isPresent()){
 			throw new InvalidEmailAndPassword();
 		}
 		
-		return userRepository.findByEmailAndPassword(email, password) != null ? true:false;
+		return userRepository.findByEmailIdAndPassword(email, password) != null ? true:false;
 	}
 
 
@@ -96,7 +73,7 @@ public  class UserServiceImpl implements IUserService{
 	@Override
 	public User getByEmail(String email) throws UserDoesNotExist  {
 		
-		Optional<User> user=userRepository.findByEmail(email);
+		Optional<User> user=Optional.ofNullable(userRepository.findByEmailId(email));
 		if(!user.isPresent()) 
 		{
 			throw new UserDoesNotExist(); 
@@ -104,16 +81,7 @@ public  class UserServiceImpl implements IUserService{
 		
 		return user.get();
 	}
-	@Override
-	public List<User> findAll() {
-		
-		
-		return userRepository.findAll();
-		
-	}
 	
-	
-
 
 	@Override
 	public void deleteUser(Long id) throws UserDoesNotExist {
@@ -135,12 +103,24 @@ public  class UserServiceImpl implements IUserService{
 		return userRepository.save(user);
 	}
 
-	
 
 	
-
-
-
-
 	
+//	@Override
+//	public User findByUserName(String userName) throws UserDoesNotExist {
+//		User user = userRepository.findByUserName(userName);
+//		
+//		
+//		User user1 = new User();
+//		 
+//		user1.setUserName(user.getUserName());
+//		user1.setRoll(user.getRoll());
+//		user1.setEmail(user.getEmail());
+//		
+//		return user1;
+//			
+//	}
+	
+
+
 }

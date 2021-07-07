@@ -14,28 +14,24 @@ import com.demo.exception.UserNameException;
 
 @Service
 public interface IUserService {
-	
+	// for registration
 	public User save(User user)throws UserEmailAlreadyExistException, UserNameException;
 	
-	// by default ABSTRACT methods are public 
-	
-	 List<User> fetchAll();
-	 
-	 public User findByUserName(String userName) throws  UserDoesNotExist;
-
-	public List<User> findAll();
-	
+	// for login
 	public boolean findByEmailAndPassword(String email,String password) throws InvalidEmailAndPassword;
 
-//	public User getById(String email) throws UserDoesNotExist;
-
+	// for deleting
 	public void deleteUser(Long valueOf) throws UserDoesNotExist;
 
+	// for updating
 	public User updateUser(@Valid User user);
 
-	User getByEmail(String email) throws UserDoesNotExist;
+//	User getByEmail(String email) throws UserDoesNotExist;
+	// by default ABSTRACT methods are public 
+	
+	// List<User> fetchAll();
+	public User getByEmail(String email) throws UserDoesNotExist;
 	 
 
 }
 
-//  public interface IUserService extends UserDetailsService{
