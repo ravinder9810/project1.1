@@ -48,7 +48,7 @@ public class ValidationMessages extends ResponseEntityExceptionHandler{
 	@ExceptionHandler(value = InvalidEmailAndPassword.class)
 	public ResponseEntity<Object> exception4(InvalidEmailAndPassword exception) {
 
-		return new ResponseEntity<>(" Inavlid mai-Id and password ", HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(" Invalid mail-Id and password ", HttpStatus.NOT_FOUND);
 
 	}
 	
