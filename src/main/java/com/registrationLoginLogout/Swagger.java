@@ -1,4 +1,4 @@
-package com.demo;
+package com.registrationLoginLogout;
 
 //import org.springframework.cglib.core.Predicate;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package com.demo.entities;
+package com.registrationLoginLogout.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

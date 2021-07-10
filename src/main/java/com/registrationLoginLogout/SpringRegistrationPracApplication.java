@@ -1,8 +1,7 @@
-package com.demo;
+package com.registrationLoginLogout;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
 @SpringBootApplication
 public class SpringRegistrationPracApplication {

@@ -1,6 +1,4 @@
-package com.demo.controller;
-
-import java.util.List;
+package com.registrationLoginLogout.controller;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -18,14 +16,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.entities.Login;
-import com.demo.entities.User;
-import com.demo.exception.ConfirmPassswordException;
-import com.demo.exception.InvalidEmailAndPassword;
-import com.demo.exception.UserDoesNotExist;
-import com.demo.exception.UserEmailAlreadyExistException;
-import com.demo.exception.UserNameException;
-import com.demo.service.IUserService;
+import com.registrationLoginLogout.entities.Login;
+import com.registrationLoginLogout.entities.User;
+import com.registrationLoginLogout.exception.ConfirmPassswordException;
+import com.registrationLoginLogout.exception.InvalidEmailAndPassword;
+import com.registrationLoginLogout.exception.UserDoesNotExist;
+import com.registrationLoginLogout.exception.UserEmailAlreadyExistException;
+import com.registrationLoginLogout.exception.UserNameException;
+import com.registrationLoginLogout.service.IUserService;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -37,13 +35,11 @@ public class RegistrationController {
 	@Autowired
 	private IUserService userService;
 	
-//	@Autowired
-//	private BCryptPasswordEncoder bCryptPasswordEncoder;
-		
+
+		//for Registration 
 	@PostMapping("registration")
 	public ResponseEntity<User> registerUserAccount(@Valid @RequestBody User user) throws UserEmailAlreadyExistException, UserNameException, ConfirmPassswordException
 	{
-//		bCryptPasswordEncoder.encode(user.getPassword());
 				
 		User user1 = userService.save(user);
 		
@@ -63,9 +59,7 @@ public class RegistrationController {
 		{
 			throw new InvalidEmailAndPassword();
 		}
-		
-		
-		
+				
 		return new ResponseEntity<>(login, HttpStatus.CREATED);
 	}
 	
@@ -87,9 +81,7 @@ public class RegistrationController {
 		
 	}
 	
-	
-
-	
+		
 	
 	@PutMapping("/update")
 	@ApiOperation("update customer details ")

@@ -1,4 +1,4 @@
- package com.demo.service;
+ package com.registrationLoginLogout.service;
 
 import java.util.Optional;
 
@@ -7,13 +7,13 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.demo.entities.User;
-import com.demo.exception.ConfirmPassswordException;
-import com.demo.exception.InvalidEmailAndPassword;
-import com.demo.exception.UserDoesNotExist;
-import com.demo.exception.UserEmailAlreadyExistException;
-import com.demo.exception.UserNameException;
-import com.demo.repository.UserRepository;
+import com.registrationLoginLogout.entities.User;
+import com.registrationLoginLogout.exception.ConfirmPassswordException;
+import com.registrationLoginLogout.exception.InvalidEmailAndPassword;
+import com.registrationLoginLogout.exception.UserDoesNotExist;
+import com.registrationLoginLogout.exception.UserEmailAlreadyExistException;
+import com.registrationLoginLogout.exception.UserNameException;
+import com.registrationLoginLogout.repository.UserRepository;
 
 
 @Service
@@ -22,47 +22,45 @@ public  class UserServiceImpl implements IUserService{
 	@Autowired
 	private UserRepository userRepository;
 	
-//	@Autowired
-//	private BCryptPasswordEncoder passwordEncoder
-	
-	@Override
+	// For Registration 
+	@Override	
 	public User save( User user ) throws UserEmailAlreadyExistException, UserNameException, ConfirmPassswordException 
 	{
 	
-	//	user.setPassword(passwordEncoder.encode(user.getPassword()));
 	if(checkIfEmailExist(user.getEmailId()))
 	{
 		throw new UserEmailAlreadyExistException();
+		// throwing exception if user exist with same mail-Id
 	}
 	if(checkIfUserNameExist(user.getUserName())) 
 	{
 		throw new UserNameException();
-		
+		// throwing exception if user exist with same UserName
 	}
 	if(!(user.getPassword().equals(user.getConfirmPassword())))
 	{
-	//	user.getPassword().equals(user.getConfirmPassword())
 		throw new ConfirmPassswordException();
+		// throwing exception if password and confirm password does not match
 	}
 	
-
-	user.setRoll("Trainee");
 		
 		return	userRepository.save(user);
 	}
 	
+	// this is for registration 
 	//check with mail
-	public boolean checkIfEmailExist(String email) {// this is for registration 
+	public boolean checkIfEmailExist(String email) {
 		return userRepository.findByEmailId(email) != null ? true : false;
 	}
-
+	
+	//this is for registration
 	// check with username
-	public boolean checkIfUserNameExist(String userName) {//this is for registration
+	public boolean checkIfUserNameExist(String userName) {
 		return userRepository.findByUserName(userName) != null ? true : false;
 	}
 	
 
-	//for Login
+	// this is for Login user with email and password
 	@Override
 	public boolean findByEmailAndPassword(String email, String password) throws InvalidEmailAndPassword {
 		Optional<User> user =userRepository.findByEmailIdAndPassword(email, password);
@@ -74,7 +72,7 @@ public  class UserServiceImpl implements IUserService{
 	}
 
 
-
+	// fetching user by email-Id
 	@Override
 	public User getByEmail(String email) throws UserDoesNotExist  {
 		
@@ -99,33 +97,10 @@ public  class UserServiceImpl implements IUserService{
 		
 	}
 
-	
-	
-
 	@Override
 	public User updateUser(@Valid User user) {
 		
 		return userRepository.save(user);
 	}
-
-
-	
-	
-//	@Override
-//	public User findByUserName(String userName) throws UserDoesNotExist {
-//		User user = userRepository.findByUserName(userName);
-//		
-//		
-//		User user1 = new User();
-//		 
-//		user1.setUserName(user.getUserName());
-//		user1.setRoll(user.getRoll());
-//		user1.setEmail(user.getEmail());
-//		
-//		return user1;
-//			
-//	}
-	
-
 
 }
