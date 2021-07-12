@@ -26,7 +26,7 @@ public class Swagger {
 						paths(postPaths()).build();
 	}
 	private Predicate<String> postPaths(){
-		return or(regex("/registration/.*"), regex("/registration/.*"));
+		return or(regex("/registration/.*"));
 	}
 
 	private ApiInfo apiInfo() {

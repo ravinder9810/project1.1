@@ -21,6 +21,7 @@ import lombok.NoArgsConstructor;
 
 
 public class User {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
@@ -45,9 +46,9 @@ public class User {
 	@Column(name = "address")
 	private String address;
 	
-	@Pattern(regexp = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z]+(?:\\.[a-zA-Z0-9-]+)*$",message = "Please Enter a Valid Email-Id ")
+	@Pattern(regexp = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$",message = "Please Enter a Valid Email-Id ")
 	private String emailId;
-	
+	//@Pattern(regexp = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z]+(?:\\.[a-zA-Z0-9-]+)*$",message = "Please Enter a Valid Email-Id ")
 
 	@Column(name = "password")
 //	@Size(min = 8 ,message = " password should have minimum 8 characters ")

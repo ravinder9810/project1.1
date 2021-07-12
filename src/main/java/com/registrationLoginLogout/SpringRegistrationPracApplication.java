@@ -11,4 +11,3 @@ public class SpringRegistrationPracApplication {
 	}
 
 }
-//hello  world

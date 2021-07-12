@@ -27,7 +27,7 @@ public class ValidationMessages extends ResponseEntityExceptionHandler{
 	@ExceptionHandler(value = UserEmailAlreadyExistException.class)
 	public ResponseEntity<Object> exceptionForEmailAreadyExist(UserEmailAlreadyExistException exception) {
 
-		return new ResponseEntity<>(" User already exist with the mail-Id Please try with another Email-Id ", HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(" User already exist with the mail-Id ? Please try with another Email-Id ", HttpStatus.NOT_FOUND);
 
 	}
 	
@@ -35,7 +35,7 @@ public class ValidationMessages extends ResponseEntityExceptionHandler{
 	@ExceptionHandler(value = UserNameException.class)
 	public ResponseEntity<Object> exceptionForUserNameAlreadyExist(UserNameException exception) {
 
-		return new ResponseEntity<>(" User already exist with the User-Name Please try with another User-Name ", HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(" User already exist with the User-Name ? Please try with another User-Name ", HttpStatus.NOT_FOUND);
 
 	}
 	
@@ -49,13 +49,13 @@ public class ValidationMessages extends ResponseEntityExceptionHandler{
 	@ExceptionHandler(value = InvalidEmailAndPassword.class)
 	public ResponseEntity<Object> exceptionForInvalidEmailAndPassword(InvalidEmailAndPassword exception) {
 
-		return new ResponseEntity<>(" Invalid mail-Id and password Please try with Correct Login Credintials", HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(" Invalid mail-Id and password ? Please try with Correct Login Credintials", HttpStatus.NOT_FOUND);
 
 	}
 	@ExceptionHandler(value = ConfirmPassswordException.class)
 	public ResponseEntity<Object> exceptionForConfirmPasssword(ConfirmPassswordException exception) {
 
-		return new ResponseEntity<>(" Password and confirm Password Does not Match ", HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(" Password and confirm Password Does not Match ?", HttpStatus.NOT_FOUND);
 
 	}
 	

@@ -19,11 +19,11 @@ public interface IUserService {
 	//Interface for login
 	public boolean findByEmailAndPassword(String email,String password) throws InvalidEmailAndPassword;
 
-	//Interface for deleting
-	public void deleteUser(Long valueOf) throws UserDoesNotExist;
-
-	//Interface for updating
-	public User updateUser(@Valid User user);
+//	//Interface for deleting
+//	public void deleteUser(Long id) throws UserDoesNotExist;
+//
+//	//Interface for updating
+//	public User updateUser(@Valid User user);
 
 	// interface for Fetch By Email
 	public User getByEmail(String email) throws UserDoesNotExist;
